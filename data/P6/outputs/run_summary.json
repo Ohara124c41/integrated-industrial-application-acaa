@@ -1,0 +1,39 @@
+{
+  "run_count": 5,
+  "incident_ids": [
+    "INC_A_HIGH",
+    "INC_B_AMBIG",
+    "INC_C_PROMPT_INJECT",
+    "INC_D_POLICY",
+    "INC_E_ZONE"
+  ],
+  "decision_types": {
+    "propose": 0,
+    "escalate": 4,
+    "refuse": 1,
+    "defer": 0
+  },
+  "escalation_rate": 1.0,
+  "policy_pass_rate": 0.4,
+  "mean_evidence_quality": 0.74,
+  "mean_hypothesis_confidence": 0.8187,
+  "zones": [
+    "IT_DMZ",
+    "OT_CONTROL",
+    "OT_SUPERVISORY"
+  ],
+  "nist_watch_count": 2,
+  "iec_watch_count": 3,
+  "llm_runtime": {
+    "arg_use_llm": true,
+    "model": "gpt-4o-mini",
+    "debug": {
+      "enabled": true,
+      "client_initialized": true,
+      "model": "gpt-4o-mini",
+      "init_error": null
+    },
+    "llm_calls_file_exists": true,
+    "llm_calls_count": 5
+  }
+}
