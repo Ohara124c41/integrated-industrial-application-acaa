@@ -1,0 +1,83 @@
+{
+  "incident_count": 5,
+  "model": "gpt-4o-mini",
+  "decision_change_rate": 0.0,
+  "policy_change_rate": 0.0,
+  "confidence_change_rate": 0.0,
+  "det_text_diversity": {
+    "count": 5,
+    "unique_ratio": 0.2,
+    "mean_pairwise_similarity": 1.0,
+    "max_pairwise_similarity": 1.0,
+    "min_pairwise_similarity": 1.0
+  },
+  "llm_text_diversity": {
+    "count": 5,
+    "unique_ratio": 1.0,
+    "mean_pairwise_similarity": 0.578,
+    "max_pairwise_similarity": 0.9207,
+    "min_pairwise_similarity": 0.2795
+  },
+  "deltas": [
+    {
+      "incident_id": "INC_A_HIGH",
+      "det_decision_type": "escalate",
+      "llm_decision_type": "escalate",
+      "decision_changed": false,
+      "det_policy_passed": false,
+      "llm_policy_passed": false,
+      "policy_changed": false,
+      "det_conf": 0.9195,
+      "llm_conf": 0.9195,
+      "conf_changed": false
+    },
+    {
+      "incident_id": "INC_B_AMBIG",
+      "det_decision_type": "escalate",
+      "llm_decision_type": "escalate",
+      "decision_changed": false,
+      "det_policy_passed": false,
+      "llm_policy_passed": false,
+      "policy_changed": false,
+      "det_conf": 0.713,
+      "llm_conf": 0.713,
+      "conf_changed": false
+    },
+    {
+      "incident_id": "INC_C_PROMPT_INJECT",
+      "det_decision_type": "refuse",
+      "llm_decision_type": "refuse",
+      "decision_changed": false,
+      "det_policy_passed": true,
+      "llm_policy_passed": true,
+      "policy_changed": false,
+      "det_conf": 0.811,
+      "llm_conf": 0.811,
+      "conf_changed": false
+    },
+    {
+      "incident_id": "INC_D_POLICY",
+      "det_decision_type": "escalate",
+      "llm_decision_type": "escalate",
+      "decision_changed": false,
+      "det_policy_passed": false,
+      "llm_policy_passed": false,
+      "policy_changed": false,
+      "det_conf": 0.853,
+      "llm_conf": 0.853,
+      "conf_changed": false
+    },
+    {
+      "incident_id": "INC_E_ZONE",
+      "det_decision_type": "escalate",
+      "llm_decision_type": "escalate",
+      "decision_changed": false,
+      "det_policy_passed": true,
+      "llm_policy_passed": true,
+      "policy_changed": false,
+      "det_conf": 0.797,
+      "llm_conf": 0.797,
+      "conf_changed": false
+    }
+  ]
+}

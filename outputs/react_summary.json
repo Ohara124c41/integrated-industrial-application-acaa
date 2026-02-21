@@ -1,0 +1,9 @@
+{
+  "incident_count": 5,
+  "react_escalate_count": 4,
+  "react_hitl_required_rate": 0.4,
+  "policy_gate_violations": 0,
+  "react_llm_requested": true,
+  "react_llm_active": true,
+  "react_model": "gpt-4o-mini"
+}

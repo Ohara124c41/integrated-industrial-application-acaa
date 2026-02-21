@@ -1,0 +1,17 @@
+{
+  "incident_count": 5,
+  "branch_row_count": 10,
+  "disagreement_rate": 0.2,
+  "hitl_required_rate": 0.4,
+  "hitl_override_rate": 0.0,
+  "selected_branch_distribution": {
+    "security_assurance": 3,
+    "operations_continuity": 2
+  },
+  "llm_enabled": false,
+  "model": "gpt-4o-mini",
+  "llm_passes": 2,
+  "meta_llm_enabled": true,
+  "policy_gate_invariant_violations": 0,
+  "blocked_override_rate": 0.0
+}

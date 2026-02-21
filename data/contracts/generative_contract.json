@@ -1,0 +1,13 @@
+{
+  "name": "generative_contract",
+  "description": "Narrative and RCA generation fields carried from generative outputs.",
+  "required_fields": [
+    "gen_incident_id",
+    "gen_generation_id",
+    "gen_summary",
+    "gen_hypothesis",
+    "gen_quality_flags",
+    "gen_safety_flags",
+    "gen_failure_mode_tags"
+  ]
+}

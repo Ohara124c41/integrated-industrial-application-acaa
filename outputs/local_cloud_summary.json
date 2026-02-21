@@ -1,0 +1,80 @@
+{
+  "plugin_order": [
+    "ingest",
+    "risk",
+    "rca",
+    "agent",
+    "governance",
+    "storage"
+  ],
+  "execution_log": [
+    {
+      "plugin": "ingest",
+      "status": "ok",
+      "started_utc": "2026-02-21T07:54:18.126543+00:00",
+      "error": ""
+    },
+    {
+      "plugin": "risk",
+      "status": "ok",
+      "started_utc": "2026-02-21T07:54:18.128052+00:00",
+      "error": ""
+    },
+    {
+      "plugin": "rca",
+      "status": "ok",
+      "started_utc": "2026-02-21T07:54:18.129187+00:00",
+      "error": ""
+    },
+    {
+      "plugin": "agent",
+      "status": "ok",
+      "started_utc": "2026-02-21T07:54:18.130191+00:00",
+      "error": ""
+    },
+    {
+      "plugin": "governance",
+      "status": "ok",
+      "started_utc": "2026-02-21T07:54:18.148145+00:00",
+      "error": ""
+    },
+    {
+      "plugin": "storage",
+      "status": "ok",
+      "started_utc": "2026-02-21T07:54:18.150949+00:00",
+      "error": ""
+    }
+  ],
+  "governance_summary": {
+    "policy_fail_count": 3,
+    "policy_gate_invariant_violations": 0,
+    "status": "pass"
+  },
+  "risk_summary": {
+    "mean_risk": 0.7420000000000001,
+    "high_risk_count_ge_0_80": 2,
+    "zone_mean_risk": {
+      "IT_DMZ": 0.72,
+      "OT_CONTROL": 0.875,
+      "OT_SUPERVISORY": 0.62
+    }
+  },
+  "agent_summary": {
+    "meta_rows": 5,
+    "disagreement_rate": 0.2,
+    "hitl_required_rate": 0.4,
+    "meta_decisions_path": "c:\\Users\\Ohara\\Desktop\\__Udacity\\__MSc_Project\\P7\\outputs\\meta_decisions_local_cloud.jsonl",
+    "meta_rebuilt_in_run": true
+  },
+  "storage_summary": {
+    "sqlite_path": "c:\\Users\\Ohara\\Desktop\\__Udacity\\__MSc_Project\\P7\\outputs\\local_cloud_packets.db",
+    "parquet_path": "c:\\Users\\Ohara\\Desktop\\__Udacity\\__MSc_Project\\P7\\outputs\\local_cloud_packets.parquet",
+    "parquet_written": true,
+    "parquet_error": ""
+  },
+  "rca_summary": {
+    "incident_count": 5,
+    "empty_quality_flag_rows": 4
+  },
+  "timestamp_utc": "2026-02-21T07:54:18.174135+00:00"
+}

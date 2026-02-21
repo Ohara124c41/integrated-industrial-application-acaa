@@ -1,0 +1,252 @@
+{
+  "incident_id": "INC_A_HIGH",
+  "scenario_id": "A",
+  "incident_text": "Repeated outbound encrypted sessions from PLC segment to unknown external endpoint with lateral movement indicators.",
+  "telemetry_excerpt_ids": [
+    "T1001",
+    "T1002",
+    "T1003"
+  ],
+  "known_constraints": {
+    "change_window_open": false,
+    "allow_egress_block": false
+  },
+  "threat_model": {
+    "assets": [
+      "PLC_A_1",
+      "ControlNetwork"
+    ],
+    "adversary": "external_operator",
+    "attack_surface": [
+      "remote_service",
+      "outbound_egress"
+    ],
+    "trust_boundaries": [
+      "OT_CONTROL->IT_DMZ"
+    ],
+    "security_objective": "contain potential command channel"
+  },
+  "asset_id": "PLC_A_1",
+  "stage": "final",
+  "severity": "critical",
+  "confidence_band": "high",
+  "escalation_required": true,
+  "local_risk_snapshot": {
+    "risk_score": 0.91,
+    "anomaly_count": 7,
+    "anomaly_tags": [
+      "possible_c2",
+      "lateral_movement",
+      "egress_spike"
+    ],
+    "confidence_hint": 0.82
+  },
+  "evidence_bundle": [
+    {
+      "evidence_id": "E-A-1",
+      "type": "flow",
+      "note": "Rare dst pattern from control zone"
+    },
+    {
+      "evidence_id": "E-A-2",
+      "type": "alert",
+      "note": "Lateral-service indicator"
+    },
+    {
+      "evidence_id": "E-A-3",
+      "type": "timeline",
+      "note": "Burst in outbound traffic"
+    }
+  ],
+  "evidence_quality": 0.8600000000000001,
+  "rca_hypotheses": [
+    {
+      "hypothesis_id": "H1",
+      "hypothesis_text": "Likely coordinated suspicious traffic with potential control-channel behavior from anomalous protocol/flow signals.",
+      "confidence_score": 0.9195,
+      "supporting_evidence_ids": [
+        "E-A-1",
+        "E-A-2",
+        "E-A-3"
+      ],
+      "counter_evidence_ids": [],
+      "validation_steps": [
+        "Check flow continuity and endpoint recurrence over next 15 minutes",
+        "Cross-check destination pattern against known maintenance windows"
+      ],
+      "business_impact_note": "Potential integrity/availability impact if lateral propagation is present."
+    },
+    {
+      "hypothesis_id": "H2",
+      "hypothesis_text": "Alternative explanation: benign operational burst or maintenance process causing transient anomaly signatures.",
+      "confidence_score": 0.05,
+      "supporting_evidence_ids": [
+        "E-A-2",
+        "E-A-3"
+      ],
+      "counter_evidence_ids": [],
+      "validation_steps": [
+        "Verify maintenance/change calendar",
+        "Compare with historical benign baselines"
+      ],
+      "business_impact_note": "Lower immediate risk but can mask true malicious activity."
+    }
+  ],
+  "selected_hypothesis": {
+    "hypothesis_id": "H1",
+    "hypothesis_text": "Likely coordinated suspicious traffic with potential control-channel behavior from anomalous protocol/flow signals.",
+    "confidence_score": 0.9195,
+    "supporting_evidence_ids": [
+      "E-A-1",
+      "E-A-2",
+      "E-A-3"
+    ],
+    "counter_evidence_ids": [],
+    "validation_steps": [
+      "Check flow continuity and endpoint recurrence over next 15 minutes",
+      "Cross-check destination pattern against known maintenance windows"
+    ],
+    "business_impact_note": "Potential integrity/availability impact if lateral propagation is present."
+  },
+  "attack_techniques": [
+    {
+      "technique_id": "T1071",
+      "technique_name": "Application Layer Protocol",
+      "confidence": 0.74,
+      "evidence_ids": [
+        "E-A-1",
+        "E-A-2",
+        "E-A-3"
+      ]
+    },
+    {
+      "technique_id": "T1048",
+      "technique_name": "Exfiltration Over Alternative Protocol",
+      "confidence": 0.71,
+      "evidence_ids": [
+        "E-A-1",
+        "E-A-2",
+        "E-A-3"
+      ]
+    },
+    {
+      "technique_id": "T1021",
+      "technique_name": "Remote Services",
+      "confidence": 0.69,
+      "evidence_ids": [
+        "E-A-1",
+        "E-A-2",
+        "E-A-3"
+      ]
+    }
+  ],
+  "proposed_actions": [
+    {
+      "action_type": "increase_logging",
+      "target_id": "PLC_A_1",
+      "rationale": "Increase observability for short-window verification.",
+      "requires_human_approval": false
+    },
+    {
+      "action_type": "isolate_segment",
+      "target_id": "PLC_A_1",
+      "rationale": "Contain potential spread while investigation continues.",
+      "requires_human_approval": false
+    },
+    {
+      "action_type": "manual_investigation",
+      "target_id": "PLC_A_1",
+      "rationale": "Escalate to analyst for immediate review.",
+      "requires_human_approval": false
+    }
+  ],
+  "policy_check_result": {
+    "passed": false,
+    "violations": [
+      "zone_policy_violation:OT_CONTROL:isolate_segment"
+    ],
+    "nist_findings": [
+      {
+        "csf_ref": "DE.CM-01",
+        "check": "Monitoring coverage and data sufficiency",
+        "status": "pass"
+      },
+      {
+        "csf_ref": "RS.AN-01",
+        "check": "Incident analysis confidence",
+        "status": "pass"
+      },
+      {
+        "csf_ref": "RS.CO-03",
+        "check": "Escalation path readiness",
+        "status": "pass"
+      }
+    ],
+    "iec_findings": [
+      {
+        "control": "IEC62443-zone-conduit",
+        "zone": "OT_CONTROL",
+        "status": "watch"
+      }
+    ]
+  },
+  "tool_calls": [],
+  "audit_trace_ids": [
+    "INC_A_HIGH:orchestrator:start:1771660349",
+    "INC_A_HIGH:intake:completed:1771660349",
+    "INC_A_HIGH:evidence:completed:1771660349",
+    "INC_A_HIGH:rca:completed:1771660349",
+    "INC_A_HIGH:response:completed:1771660349",
+    "INC_A_HIGH:governance:completed:1771660349"
+  ],
+  "logs": [
+    {
+      "ts": "2026-02-21T07:52:29.479060+00:00",
+      "level": "info",
+      "stage": "intake",
+      "message": "Intake classification complete",
+      "severity": "critical",
+      "prompt_injection_flag": false
+    },
+    {
+      "ts": "2026-02-21T07:52:29.479959+00:00",
+      "level": "info",
+      "stage": "evidence",
+      "message": "Evidence scoring complete",
+      "evidence_count": 3,
+      "evidence_quality": 0.86
+    },
+    {
+      "ts": "2026-02-21T07:52:29.479959+00:00",
+      "level": "info",
+      "stage": "rca",
+      "message": "RCA hypotheses generated",
+      "selected_hypothesis": "H1",
+      "confidence": 0.9195,
+      "attack_technique_count": 3
+    },
+    {
+      "ts": "2026-02-21T07:52:29.479959+00:00",
+      "level": "info",
+      "stage": "response",
+      "message": "Response plan drafted",
+      "action_count": 3,
+      "severity": "critical"
+    },
+    {
+      "ts": "2026-02-21T07:52:29.481755+00:00",
+      "level": "info",
+      "stage": "governance",
+      "message": "Governance checks completed",
+      "policy_passed": false,
+      "violations": [
+        "zone_policy_violation:OT_CONTROL:isolate_segment"
+      ],
+      "escalation_required": true
+    }
+  ],
+  "degraded_mode": false,
+  "error": null,
+  "created_at": "2026-02-21T07:52:29.477999+00:00",
+  "updated_at": "2026-02-21T07:52:29.481755+00:00"
+}

@@ -1,0 +1,229 @@
+{
+  "incident_id": "INC_D_POLICY",
+  "scenario_id": "D",
+  "incident_text": "High anomaly score from control segment, with recommendation candidate that may violate change constraints.",
+  "telemetry_excerpt_ids": [
+    "T4001",
+    "T4002"
+  ],
+  "known_constraints": {
+    "change_window_open": false,
+    "allow_egress_block": false
+  },
+  "threat_model": {
+    "assets": [
+      "PLC_D_7"
+    ],
+    "adversary": "insider_or_compromised_service",
+    "attack_surface": [
+      "lateral_service"
+    ],
+    "trust_boundaries": [
+      "OT_SUPERVISORY->OT_CONTROL"
+    ],
+    "security_objective": "contain spread without unsafe action"
+  },
+  "asset_id": "PLC_D_7",
+  "stage": "final",
+  "severity": "high",
+  "confidence_band": "high",
+  "escalation_required": true,
+  "local_risk_snapshot": {
+    "risk_score": 0.84,
+    "anomaly_count": 5,
+    "anomaly_tags": [
+      "lateral_movement",
+      "service_abuse"
+    ],
+    "confidence_hint": 0.7
+  },
+  "evidence_bundle": [
+    {
+      "evidence_id": "E-D-1",
+      "type": "flow",
+      "note": "Inter-zone communication spike"
+    },
+    {
+      "evidence_id": "E-D-2",
+      "type": "alert",
+      "note": "Policy-sensitive action candidate"
+    }
+  ],
+  "evidence_quality": 0.74,
+  "rca_hypotheses": [
+    {
+      "hypothesis_id": "H1",
+      "hypothesis_text": "Likely coordinated suspicious traffic with potential control-channel behavior from anomalous protocol/flow signals.",
+      "confidence_score": 0.853,
+      "supporting_evidence_ids": [
+        "E-D-1",
+        "E-D-2"
+      ],
+      "counter_evidence_ids": [],
+      "validation_steps": [
+        "Check flow continuity and endpoint recurrence over next 15 minutes",
+        "Cross-check destination pattern against known maintenance windows"
+      ],
+      "business_impact_note": "Potential integrity/availability impact if lateral propagation is present."
+    },
+    {
+      "hypothesis_id": "H2",
+      "hypothesis_text": "Alternative explanation: benign operational burst or maintenance process causing transient anomaly signatures.",
+      "confidence_score": 0.05,
+      "supporting_evidence_ids": [
+        "E-D-1",
+        "E-D-2"
+      ],
+      "counter_evidence_ids": [],
+      "validation_steps": [
+        "Verify maintenance/change calendar",
+        "Compare with historical benign baselines"
+      ],
+      "business_impact_note": "Lower immediate risk but can mask true malicious activity."
+    }
+  ],
+  "selected_hypothesis": {
+    "hypothesis_id": "H1",
+    "hypothesis_text": "Likely coordinated suspicious traffic with potential control-channel behavior from anomalous protocol/flow signals.",
+    "confidence_score": 0.853,
+    "supporting_evidence_ids": [
+      "E-D-1",
+      "E-D-2"
+    ],
+    "counter_evidence_ids": [],
+    "validation_steps": [
+      "Check flow continuity and endpoint recurrence over next 15 minutes",
+      "Cross-check destination pattern against known maintenance windows"
+    ],
+    "business_impact_note": "Potential integrity/availability impact if lateral propagation is present."
+  },
+  "attack_techniques": [
+    {
+      "technique_id": "T1021",
+      "technique_name": "Remote Services",
+      "confidence": 0.69,
+      "evidence_ids": [
+        "E-D-1",
+        "E-D-2"
+      ]
+    },
+    {
+      "technique_id": "T1569",
+      "technique_name": "System Services",
+      "confidence": 0.58,
+      "evidence_ids": [
+        "E-D-1",
+        "E-D-2"
+      ]
+    }
+  ],
+  "proposed_actions": [
+    {
+      "action_type": "increase_logging",
+      "target_id": "PLC_D_7",
+      "rationale": "Increase observability for short-window verification.",
+      "requires_human_approval": false
+    },
+    {
+      "action_type": "isolate_segment",
+      "target_id": "PLC_D_7",
+      "rationale": "Contain potential spread while investigation continues.",
+      "requires_human_approval": false
+    },
+    {
+      "action_type": "manual_investigation",
+      "target_id": "PLC_D_7",
+      "rationale": "Escalate to analyst for immediate review.",
+      "requires_human_approval": false
+    }
+  ],
+  "policy_check_result": {
+    "passed": false,
+    "violations": [
+      "zone_policy_violation:OT_CONTROL:isolate_segment"
+    ],
+    "nist_findings": [
+      {
+        "csf_ref": "DE.CM-01",
+        "check": "Monitoring coverage and data sufficiency",
+        "status": "pass"
+      },
+      {
+        "csf_ref": "RS.AN-01",
+        "check": "Incident analysis confidence",
+        "status": "pass"
+      },
+      {
+        "csf_ref": "RS.CO-03",
+        "check": "Escalation path readiness",
+        "status": "pass"
+      }
+    ],
+    "iec_findings": [
+      {
+        "control": "IEC62443-zone-conduit",
+        "zone": "OT_CONTROL",
+        "status": "watch"
+      }
+    ]
+  },
+  "tool_calls": [],
+  "audit_trace_ids": [
+    "INC_D_POLICY:orchestrator:start:1771660349",
+    "INC_D_POLICY:intake:completed:1771660349",
+    "INC_D_POLICY:evidence:completed:1771660349",
+    "INC_D_POLICY:rca:completed:1771660349",
+    "INC_D_POLICY:response:completed:1771660349",
+    "INC_D_POLICY:governance:completed:1771660349"
+  ],
+  "logs": [
+    {
+      "ts": "2026-02-21T07:52:29.500390+00:00",
+      "level": "info",
+      "stage": "intake",
+      "message": "Intake classification complete",
+      "severity": "high",
+      "prompt_injection_flag": false
+    },
+    {
+      "ts": "2026-02-21T07:52:29.500390+00:00",
+      "level": "info",
+      "stage": "evidence",
+      "message": "Evidence scoring complete",
+      "evidence_count": 2,
+      "evidence_quality": 0.74
+    },
+    {
+      "ts": "2026-02-21T07:52:29.501170+00:00",
+      "level": "info",
+      "stage": "rca",
+      "message": "RCA hypotheses generated",
+      "selected_hypothesis": "H1",
+      "confidence": 0.853,
+      "attack_technique_count": 2
+    },
+    {
+      "ts": "2026-02-21T07:52:29.501170+00:00",
+      "level": "info",
+      "stage": "response",
+      "message": "Response plan drafted",
+      "action_count": 3,
+      "severity": "high"
+    },
+    {
+      "ts": "2026-02-21T07:52:29.502363+00:00",
+      "level": "info",
+      "stage": "governance",
+      "message": "Governance checks completed",
+      "policy_passed": false,
+      "violations": [
+        "zone_policy_violation:OT_CONTROL:isolate_segment"
+      ],
+      "escalation_required": true
+    }
+  ],
+  "degraded_mode": false,
+  "error": null,
+  "created_at": "2026-02-21T07:52:29.499618+00:00",
+  "updated_at": "2026-02-21T07:52:29.502363+00:00"
+}

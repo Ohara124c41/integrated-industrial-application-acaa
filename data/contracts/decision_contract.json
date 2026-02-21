@@ -1,0 +1,15 @@
+{
+  "name": "decision_contract",
+  "description": "Agentic governance and decision fields required for integrated outcomes.",
+  "required_fields": [
+    "incident_id",
+    "scenario_id",
+    "decision_type",
+    "policy_passed",
+    "escalation_required",
+    "framework_nist_refs",
+    "framework_iec_refs",
+    "framework_cmmc_refs",
+    "attack_techniques"
+  ]
+}

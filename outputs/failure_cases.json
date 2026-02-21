@@ -1,0 +1,41 @@
+[
+  {
+    "incident_id": "INC_A_HIGH",
+    "decision_type": "escalate",
+    "reasons": [
+      "policy_failed",
+      "weak_rca_specificity"
+    ]
+  },
+  {
+    "incident_id": "INC_B_AMBIG",
+    "decision_type": "escalate",
+    "reasons": [
+      "policy_failed",
+      "weak_rca_specificity"
+    ]
+  },
+  {
+    "incident_id": "INC_C_PROMPT_INJECT",
+    "decision_type": "refuse",
+    "reasons": [
+      "high_safety_path",
+      "weak_rca_specificity"
+    ]
+  },
+  {
+    "incident_id": "INC_D_POLICY",
+    "decision_type": "escalate",
+    "reasons": [
+      "policy_failed",
+      "weak_rca_specificity"
+    ]
+  },
+  {
+    "incident_id": "INC_E_ZONE",
+    "decision_type": "escalate",
+    "reasons": [
+      "weak_rca_specificity"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "name": "integrated_packet_contract",
+  "description": "Unified packet schema produced by the integrated system.",
+  "required_fields": [
+    "incident_id",
+    "scenario_id",
+    "zone",
+    "decision_type",
+    "risk_score_agentic",
+    "evidence_quality",
+    "hypothesis_confidence",
+    "attack_technique_count",
+    "vuln_kev_rate",
+    "telemetry_attack_prevalence",
+    "gen_hypothesis",
+    "framework_nist_refs",
+    "framework_iec_refs",
+    "framework_cmmc_refs",
+    "integration_timestamp_utc"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "risk_contract",
+  "description": "Telemetry and vulnerability prior outputs used by the integrated pipeline.",
+  "required_fields": [
+    "incident_id",
+    "risk_score_agentic",
+    "vuln_kev_rate",
+    "vuln_cvss_mean",
+    "telemetry_attack_prevalence",
+    "hypothesis_confidence"
+  ]
+}
