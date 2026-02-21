@@ -1,5 +1,6 @@
 # Integrative Industry Synthesis
 
+## Assurance-Centered Agentic AIOps: Parallel Contested Orchestration for Industrial DevSecAIOps
 This project implements a new integrated DevSecAIOps synthesis artifact for local-cloud IIoT/OT operations by combining outputs and methods from P3, P4, P5, and P6.
 
 Project repository: https://github.com/Ohara124c41/integrated-industrial-application-acaa
